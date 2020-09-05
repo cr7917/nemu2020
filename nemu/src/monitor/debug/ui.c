@@ -2,7 +2,7 @@
 #include "monitor/expr.h"
 #include "monitor/watchpoint.h"
 #include "nemu.h"
-
+#include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -36,6 +36,16 @@ static int cmd_q(char *args) {
 	return -1;
 }
 
+static int cmd_si(char *args){
+       int num=1;
+       char *arg=strtok(NULL," "); 
+       if(arg!=NULL){
+          sscanf(arg,"%d",&num);
+       }
+       cpu_exec(num);
+       return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -48,7 +58,7 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 
 	/* TODO: Add more commands */
-
+        { "si","execute N steps",cmd_si},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
