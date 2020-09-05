@@ -46,6 +46,22 @@ static int cmd_si(char *args){
        return 0;
 }
 
+static int cmd_info(char *args){
+       if(args[0]=='r'){
+           printf("eax:0x%08x\n",cpu.eax);
+           printf("ecx:0x%08x\n",cpu.ecx);
+           printf("edx:0x%08x\n",cpu.edx);
+           printf("ebx:0x%08x\n",cpu.ebx);
+           printf("esp:0x%08x\n",cpu.esp);
+           printf("ebp:0x%08x\n",cpu.ebp);
+           printf("esi:0x%08x\n",cpu.esi);
+           printf("edi:0x%08x\n",cpu.edi);
+       }else if(args[0]=='w'){
+
+       }else assert(0);
+       return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -59,6 +75,7 @@ static struct {
 
 	/* TODO: Add more commands */
         { "si","execute N steps",cmd_si},
+        { "info","print the register or watchpoint's information",cmd_info},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
