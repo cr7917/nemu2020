@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, NEQ, DEGIT, HEX, AND, OR, REGISTER
+	NOTYPE = 256, EQ, NEQ, DIGIT, HEX, AND, OR, REGISTER
 
 	/* TODO: Add more token types */
 
@@ -22,7 +22,7 @@ static struct rule {
 	/* TODO: Add more rules.
 	 * Pay attention to the precedence level of different rules.
 	 */
-        {"\\b[0-9]+\\b",DEGIT,0},                         // degit
+        {"\\b[0-9]+\\b",DIGIT,0},                         // degit
         {"\\b0x[a-fA-F0-9]+\\b",HEX,0},                   // hex
         {"\\$[a-zA-Z]+",REGISTER,0},                      // register 
         {"	+",NOTYPE,0},                             // tab
@@ -137,6 +137,25 @@ bool check_parentheses(int l,int r){
         return false;
 }
 
+int dominant_operator(int l,int r){
+         int operator=l;
+         int m,n;
+         int min_precedence=8;
+         for(m=l;m<=r;m++){
+              if(tokens[m].type==DIGIT||tokens[m].type==HEX||tokens[m].type==REGISTER){continue;}
+              int count=0;
+              bool flag = true;
+              for(n=m-1;n>=l;n--){
+                  if(tokens[n].type=='('&&count==0){flag=false;break;}
+                  if(tokens[n].type=='('){count--;}
+                  if(tokens[n].type==')'){count++;}
+              }
+              if(!flag){continue;};
+              if(tokens[m].precedence<min_precedence){min_precedence=tokens[m].precedence;operator=m;}
+
+         }
+         return operator;
+}
 
 uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
