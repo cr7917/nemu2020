@@ -75,9 +75,10 @@ static int cmd_x(char *args){
        int num;
        char *arg1=strtok(NULL," ");
        sscanf(arg1,"%d",&num);
-       int address;
+       uint32_t address;
        char *arg2=strtok(NULL," ");
-       sscanf(arg2,"%x",&address);
+       bool success;
+       address=expr(arg2,&success);
        printf("start address is 0x%08x\n",address);
        int i;
        for(i=0;i<num;i++){
