@@ -69,7 +69,7 @@ static int cmd_x(char *args){
        int address;
        char *arg2=strtok(NULL," ");
        sscanf(arg2,"%x",&address);
-       printf("start address is 0x%08x",address);
+       printf("start address is 0x%08x\n",address);
        int i;
        for(i=0;i<num;i++){
            printf("address is 0x%08x,value is 0x%08x\n",address,swaddr_read(address,4));
