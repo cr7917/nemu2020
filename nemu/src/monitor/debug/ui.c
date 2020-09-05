@@ -62,6 +62,15 @@ static int cmd_info(char *args){
        return 0;
 }
 
+static int cmd_p(char *args){
+       bool success;
+       uint32_t result;
+       result=expr(args,&success);
+       if(success){printf("result is 0x%08x\n",result);}
+       else assert(0);       
+       return 0;
+}
+
 static int cmd_x(char *args){
        int num;
        char *arg1=strtok(NULL," ");
@@ -93,6 +102,7 @@ static struct {
         { "si","execute N steps",cmd_si},
         { "info","print the register or watchpoint's information",cmd_info},
         { "x","scan memory",cmd_x},
+        { "p","calculate the expression",cmd_p},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
