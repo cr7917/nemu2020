@@ -62,6 +62,22 @@ static int cmd_info(char *args){
        return 0;
 }
 
+static int cmd_x(char *args){
+       int num;
+       char *arg1=strtok(NULL," ");
+       sscanf(arg1,"%d",&num);
+       int address;
+       char *arg2=strtok(NULL," ");
+       sscanf(arg2,"%x",&address);
+       printf("start address is 0x%08x",address);
+       int i;
+       for(i=0;i<num;i++){
+           printf("address is 0x%08x,value is 0x%08x\n",address,swaddr_read(address,4));
+           address+=4;
+       }
+       return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -76,6 +92,7 @@ static struct {
 	/* TODO: Add more commands */
         { "si","execute N steps",cmd_si},
         { "info","print the register or watchpoint's information",cmd_info},
+        { "x","scan memory",cmd_x},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
