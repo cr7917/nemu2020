@@ -79,6 +79,7 @@ static int cmd_x(char *args){
        char *arg2=strtok(NULL," ");
        bool success;
        address=expr(arg2,&success);
+       if(!success) {return 0;}
        printf("start address is 0x%08x\n",address);
        int i;
        for(i=0;i<num;i++){
