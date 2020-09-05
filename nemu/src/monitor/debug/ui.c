@@ -75,7 +75,7 @@ static int cmd_x(char *args){
        int num;
        char *arg1=strtok(NULL," ");
        sscanf(arg1,"%d",&num);
-       uint32_t address;
+       swaddr_t address;
        char *arg2=strtok(NULL," ");
        bool success;
        address=expr(arg2,&success);
