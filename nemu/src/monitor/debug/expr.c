@@ -123,6 +123,21 @@ static bool make_token(char *e) {
 	return true; 
 }
 
+bool check_parentheses(int l,int r){
+        if(tokens[l].type=='('&&tokens[r].type==')'){
+            int index;
+            int lcnt=0,rcnt=0;
+            for(index=l;index<=r;index++){
+                 if(tokens[index].type=='('){lcnt++;}
+                 if(tokens[index].type==')'){rcnt++;}
+                 if(rcnt >  lcnt){return false;}
+            }
+            if(lcnt==rcnt){return true;}
+        }
+        return false;
+}
+
+
 uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
