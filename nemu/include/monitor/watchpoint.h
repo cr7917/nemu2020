@@ -6,10 +6,10 @@
 typedef struct watchpoint {
 	int NO;
 	struct watchpoint *next;
-
+       
 	/* TODO: Add more members if necessary */
-
-
+        uint32_t value;
+        char expression[32];
 } WP;
 
 #endif
