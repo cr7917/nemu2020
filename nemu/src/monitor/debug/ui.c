@@ -79,7 +79,7 @@ static int cmd_x(char *args){
        char *arg2=strtok(NULL," ");
        bool success;
        address=expr(arg2,&success);
-       if(!success) {return 0;}
+       if(!success) {printf("expression is wrong\n");return 0;}
        printf("start address is 0x%08x\n",address);
        int i;
        for(i=0;i<num;i++){
@@ -102,8 +102,8 @@ static int cmd_w(char *args){
         point=new_wp();
         point->value=expr(args,&success);
         strcpy(point->expression,args);
-        if(!success){assert(0);}
-        printf("value is %d\n",point->value);
+        if(!success){printf("expression is wrong\n");return 0;}
+        printf("watchpoint id %d,expression is %s,value is %d\n",point->NO,args,point->value);
         return 0;
 }
 
