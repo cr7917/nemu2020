@@ -62,7 +62,17 @@ void delete_wp(int num){
        free_wp(target);
 }
 
-
+void info_wp(){
+       WP *tmp;
+       tmp=head;
+       if(!tmp){assert(0);}
+       else{
+          while(tmp!=NULL){
+              printf("watchpoint:%d,expression:%s,value(digit):%d",tmp->NO,tmp->expression,tmp->value);
+              tmp=tmp->next;
+          }
+       }
+}
 
 
 

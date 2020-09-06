@@ -57,7 +57,7 @@ static int cmd_info(char *args){
            printf("esi:0x%08x\n",cpu.esi);
            printf("edi:0x%08x\n",cpu.edi);
        }else if(args[0]=='w'){
-
+           info_wp();
        }else assert(0);
        return 0;
 }
