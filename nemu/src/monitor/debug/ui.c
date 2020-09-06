@@ -93,6 +93,7 @@ static int cmd_d(char *args){
         int delete_num;
         sscanf(args,"%d",&delete_num);
         delete_wp(delete_num);
+        printf("delete watchpoint%d successfully\n",delete_num);
         return 0;
 }
 
