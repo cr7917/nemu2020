@@ -65,7 +65,7 @@ void delete_wp(int num){
 void info_wp(){
        WP *tmp;
        tmp=head;
-       if(!tmp){assert(0);}
+       if(!tmp){printf("no watchpoint yet\n");}
        else{
           while(tmp!=NULL){
               printf("watchpoint:%d,expression:%s,value(digit):%d\n",tmp->NO,tmp->expression,tmp->value);
