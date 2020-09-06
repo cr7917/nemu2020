@@ -68,7 +68,7 @@ void info_wp(){
        if(!tmp){assert(0);}
        else{
           while(tmp!=NULL){
-              printf("watchpoint:%d,expression:%s,value(digit):%d",tmp->NO,tmp->expression,tmp->value);
+              printf("watchpoint:%d,expression:%s,value(digit):%d\n",tmp->NO,tmp->expression,tmp->value);
               tmp=tmp->next;
           }
        }
