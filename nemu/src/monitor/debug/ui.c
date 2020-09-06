@@ -58,7 +58,7 @@ static int cmd_info(char *args){
            printf("edi:0x%08x\n",cpu.edi);
        }else if(args[0]=='w'){
            info_wp();
-       }else assert(0);
+       }else {printf("the argument msut be r or w");}
        return 0;
 }
 
