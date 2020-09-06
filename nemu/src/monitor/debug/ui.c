@@ -89,6 +89,13 @@ static int cmd_x(char *args){
        return 0;
 }
 
+static int cmd_d(char *args){
+        int delete_num;
+        sscanf(args,"%d",&delete_num);
+        delete_wp(delete_num);
+        return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -105,6 +112,7 @@ static struct {
         { "info","print the register or watchpoint's information",cmd_info},
         { "x","scan memory",cmd_x},
         { "p","calculate the expression",cmd_p},
+        { "d","delete the watchpoint",cmd_d},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))

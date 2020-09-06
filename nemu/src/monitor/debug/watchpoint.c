@@ -52,12 +52,15 @@ void free_wp(WP *wp){
          else {assert(0);}
        }
        wp->next=NULL;
+       wp->value=0;
+       wp->expression[0]='\0';
 }
 
-
-
-
-
+void delete_wp(int num){
+       WP *target;
+       target=&wp_pool[num];
+       free_wp(target);
+}
 
 
 
