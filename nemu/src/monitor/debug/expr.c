@@ -193,6 +193,15 @@ uint32_t eval(int l,int r){
            if(check_parentheses(l,r)){return eval(l+1,r-1);}
            else{
                int operator=dominant_operator(l,r);
+               if(l==operator||tokens[operator].type==POINTER||tokens[operator].type==NEG||tokens[operator].type=='!'){
+                    uint32_t value=eval(l+1,r);
+                    switch(tokens[l].type){
+                        case '!':return !value;
+                        case NEG:return -value;
+                        case POINTER:return swaddr_read(value,4);
+                        default:printf("something is going wrong\n");return 0;
+                    }
+               }
                uint32_t value1=eval(l,operator-1);
                uint32_t value2=eval(operator+1,r);
                switch(tokens[operator].type){
