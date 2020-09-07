@@ -199,7 +199,7 @@ uint32_t eval(int l,int r){
                         case '!':return !value;
                         case NEG:return -value;
                         case POINTER:return swaddr_read(value,4);
-                        default:printf("something is going wrong\n");return 0;
+                        default:assert(0);
                     }
                }
                uint32_t value1=eval(l,operator-1);
