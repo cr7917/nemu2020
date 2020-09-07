@@ -228,11 +228,11 @@ uint32_t expr(char *e, bool *success) {
 	}
         int i;
         for(i=0;i<nr_token;i++){
-            if(tokens[i].type=='*'&&(i==0||(tokens[i].type!=DIGIT&&tokens[i].type!=HEX&&tokens[i].type!=REGISTER&&tokens[i].type!=')'))){
+            if(tokens[i].type=='*'&&(i==0||(tokens[i-1].type!=DIGIT&&tokens[i-1].type!=HEX&&tokens[i-1].type!=REGISTER&&tokens[i-1].type!=')'))){
                  tokens[i].type=POINTER;
                  tokens[i].precedence=6;
             }
-            if(tokens[i].type=='-'&&(i==0||(tokens[i].type!=DIGIT&&tokens[i].type!=HEX&&tokens[i].type!=REGISTER&&tokens[i].type!=')'))){
+            if(tokens[i].type=='-'&&(i==0||(tokens[i-1].type!=DIGIT&&tokens[i-1].type!=HEX&&tokens[i-1].type!=REGISTER&&tokens[i-1].type!=')'))){
                  tokens[i].type=NEG;
                  tokens[i].precedence=6;
             }
